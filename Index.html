@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To My Thawaii</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #ffebee;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+    .container {
+      text-align: center;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      z-index: 1;
+    }
+    h1 {
+      color: #d32f2f;
+    }
+    .buttons {
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 0 10px;
+    }
+    #yesButton {
+      background-color: #4caf50;
+      color: white;
+    }
+    #noButton {
+      background-color: #f44336;
+      color: white;
+      position: relative;
+    }
+    .flower {
+      position: absolute;
+      font-size: 24px;
+      animation: blowUp 2s ease-out forwards;
+    }
+    @keyframes blowUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) scale(2);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Will you be my Valentine?</h1>
+    <div class="buttons">
+      <button id="yesButton">Yes</button>
+      <button id="noButton">No</button>
+    </div>
+  </div>
+
+  <script>
+    const noButton = document.getElementById('noButton');
+    const yesButton = document.getElementById('yesButton');
+
+    // Make the "No" button move randomly
+    noButton.addEventListener('mouseover', () => {
+      const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
+      const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
+      noButton.style.position = 'absolute';
+      noButton.style.left = `${x}px`;
+      noButton.style.top = `${y}px`;
+    });
+
+    // Add flower animation when "Yes" is clicked
+    yesButton.addEventListener('click', () => {
+      alert("Yay! You made me the happiest person! 💖");
+
+      // Create flower elements and animate them
+      for (let i = 0; i < 50; i++) {
+        const flower = document.createElement('div');
+        flower.innerHTML = '🌸';
+        flower.classList.add('flower');
+        flower.style.left = `${Math.random() * 100}vw`;
+        flower.style.top = `${Math.random() * 100}vh`;
+        document.body.appendChild(flower);
+
+        // Remove the flower after animation ends
+        setTimeout(() => {
+          flower.remove();
+        }, 2000);
+      }
+    });
+  </script>
+</body>
+</html>
